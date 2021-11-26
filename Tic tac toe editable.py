@@ -76,104 +76,109 @@ def tic_tac_toe(board):
         player_x = int(input())
 
         for x in range(1,10):
-            board.pencolor('red')
-            if(game_board[player_x] == 'O' or game_board[player_x] == 'X'):
-                print('Sorry, that space is taken. Choose again.')
+            if(player_x > 9 or player_x < 1):
+                print('Sorry, that space is not in the grid. Choose again.')
                 player_x = int(input())
+                continue
             else:
-                game_board[player_x] = 'X'
-                if(game_board[player_x] == 'X'):
-                    x = player_x
-                    if(x > 6 and x < 10):
-                        board.up()
-                        board.right(90)
-                        board.forward(200)
-                        board.down()
-                        if(x == 7):
+                board.pencolor('red')
+                if(game_board[player_x] == 'O' or game_board[player_x] == 'X'):
+                    print('Sorry, that space is taken. Choose again.')
+                    player_x = int(input())
+                else:
+                    game_board[player_x] = 'X'
+                    if(game_board[player_x] == 'X'):
+                        x = player_x
+                        if(x > 6 and x < 10):
                             board.up()
                             board.right(90)
                             board.forward(200)
-                            board.right(45)
                             board.down()
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(x == 8):
-                            board.right(135)
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        else:
+                            if(x == 7):
+                                board.up()
+                                board.right(90)
+                                board.forward(200)
+                                board.right(45)
+                                board.down()
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(x == 8):
+                                board.right(135)
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            else:
+                                board.up()
+                                board.left(90)
+                                board.forward(200)
+                                board.left(135)
+                                board.down()
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                        elif(x > 3 and x < 7):
+                            if(x == 4):
+                                board.up()
+                                board.left(180)
+                                board.forward(200)
+                                board.right(45)
+                                board.down()
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(x == 5):
+                                board.left(135)
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(x == 6):
+                                board.up()
+                                board.forward(200)
+                                board.down()
+                                board.left(135)
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                        elif(x > 0 and x < 4):
                             board.up()
                             board.left(90)
                             board.forward(200)
-                            board.left(135)
                             board.down()
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                    elif(x > 3 and x < 7):
-                        if(x == 4):
-                            board.up()
-                            board.left(180)
-                            board.forward(200)
-                            board.right(45)
-                            board.down()
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(x == 5):
-                            board.left(135)
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(x == 6):
-                            board.up()
-                            board.forward(200)
-                            board.down()
-                            board.left(135)
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                    elif(x > 0 and x < 4):
-                        board.up()
-                        board.left(90)
-                        board.forward(200)
-                        board.down()
-                        if(x == 1):
-                            board.up()
-                            board.left(90)
-                            board.forward(200)
-                            board.right(45)
-                            board.down()
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(x == 2):
-                            board.left(45)
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(x == 3):
-                            board.up()
-                            board.right(90)
-                            board.forward(200)
-                            board.left(135)
-                            board.down()
-                            x_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                    break
-        print('Player 1, your turn is over.')
+                            if(x == 1):
+                                board.up()
+                                board.left(90)
+                                board.forward(200)
+                                board.right(45)
+                                board.down()
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(x == 2):
+                                board.left(45)
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(x == 3):
+                                board.up()
+                                board.right(90)
+                                board.forward(200)
+                                board.left(135)
+                                board.down()
+                                x_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                        break
+            print('Player 1, your turn is over.')
 
 #Choose player two's space
     def player_two(game_board, board):
@@ -181,114 +186,119 @@ def tic_tac_toe(board):
         player_o = int(input())
 
         for o in range(1,10):
-            board.pencolor('blue')
-            if(game_board[player_o] == 'O' or game_board[player_o] == 'X'):
-                print('Sorry, that space is taken. Choose again.')
+            if(player_o > 9 or player_o < 1):
+                print('Sorry, that space is not in the grid. Choose again.')
                 player_o = int(input())
+                continue
             else:
-                game_board[player_o] = 'O'
-                if(game_board[player_o] == 'O'):
-                    o = player_o
-                    if(o > 6 and o < 10):
-                        board.up()
-                        board.right(90)
-                        board.forward(200)
-                        board.down()
-                        if(o == 7):
+                board.pencolor('blue')
+                if(game_board[player_o] == 'O' or game_board[player_o] == 'X'):
+                    print('Sorry, that space is taken. Choose again.')
+                    player_o = int(input())
+                else:
+                    game_board[player_o] = 'O'
+                    if(game_board[player_o] == 'O'):
+                        o = player_o
+                        if(o > 6 and o < 10):
                             board.up()
                             board.right(90)
-                            board.forward(125)
-                            board.right(90)
+                            board.forward(200)
                             board.down()
-                            o_motion(board)
+                            if(o == 7):
+                                board.up()
+                                board.right(90)
+                                board.forward(125)
+                                board.right(90)
+                                board.down()
+                                o_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(o == 8):
+                                board.left(90)
+                                board.up()
+                                board.forward(75)
+                                board.left(90)
+                                board.down()
+                                o_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            else:
+                                board.up()
+                                board.left(90)
+                                board.forward(275)
+                                board.down()
+                                board.left(90)
+                                o_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                        elif(o > 3 and o < 7):
+                            if(o == 4):
+                                board.up()
+                                board.left(180)
+                                board.forward(125)
+                                board.right(90)
+                                board.down()
+                                o_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(o == 5):
+                                board.up()
+                                board.forward(75)
+                                board.down()
+                                board.left(90)
+                                o_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(o == 6):
+                                board.up()
+                                board.forward(275)
+                                board.down()
+                                board.left(90)
+                                o_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                        elif(o > 0 and o < 4):
                             board.up()
-                            board.home()
-                            board.down()
-                        elif(o == 8):
                             board.left(90)
-                            board.up()
-                            board.forward(75)
-                            board.left(90)
+                            board.forward(200)
                             board.down()
-                            o_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        else:
-                            board.up()
-                            board.left(90)
-                            board.forward(275)
-                            board.down()
-                            board.left(90)
-                            o_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                    elif(o > 3 and o < 7):
-                        if(o == 4):
-                            board.up()
-                            board.left(180)
-                            board.forward(125)
-                            board.right(90)
-                            board.down()
-                            o_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(o == 5):
-                            board.up()
-                            board.forward(75)
-                            board.down()
-                            board.left(90)
-                            o_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(o == 6):
-                            board.up()
-                            board.forward(275)
-                            board.down()
-                            board.left(90)
-                            o_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                    elif(o > 0 and o < 4):
-                        board.up()
-                        board.left(90)
-                        board.forward(200)
-                        board.down()
-                        if(o == 1):
-                            board.up()
-                            board.left(90)
-                            board.forward(125)
-                            board.right(90)
-                            board.down()
-                            o_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(o == 2):
-                            board.right(90)
-                            board.up()
-                            board.forward(75)
-                            board.down()
-                            board.left(90)
-                            o_motion(board)
-                            board.up()
-                            board.home()
-                            board.down()
-                        elif(o == 3):
-                            board.up()
-                            board.right(90)
-                            board.forward(275)
-                            board.left(90)
-                            board.down()
-                            o_motion(board)                      
-                            board.up()
-                            board.home()
-                            board.down()
-                    break
+                            if(o == 1):
+                                board.up()
+                                board.left(90)
+                                board.forward(125)
+                                board.right(90)
+                                board.down()
+                                o_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(o == 2):
+                                board.right(90)
+                                board.up()
+                                board.forward(75)
+                                board.down()
+                                board.left(90)
+                                o_motion(board)
+                                board.up()
+                                board.home()
+                                board.down()
+                            elif(o == 3):
+                                board.up()
+                                board.right(90)
+                                board.forward(275)
+                                board.left(90)
+                                board.down()
+                                o_motion(board)                      
+                                board.up()
+                                board.home()
+                                board.down()
+                        break
         print('Player 2, your turn is over.')
 
 #Check for rows or ties
